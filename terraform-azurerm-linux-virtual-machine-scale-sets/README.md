@@ -101,5 +101,56 @@ module "linux_virtual_machine_scale_set" {
 | azurerm_subnet.xyz_subnet  | data source  |
 | azurerm_user_assigned_identiry.uami_list  | data source  |
 
+# Inputs
+
+## The following table explains the full list of input variables required by this module.
+
+## The definition of these variables is in the ``variables.tf`` file
+
+| Name         | Description  | Type      | Default   | Required   |
+|--------------|--------------|-----------|-----------|------------|
+| azurerm_probe_name | Azure load balancer port probe name | string | n/a | yes  |
+| azurerm_probe_name | Azure Probe port | Number  | n/a | yes |
+| backend_address_pool_name | Load balance address pool name | string | n/a  | yes |
+| bootstrap_param  | Bootstrap script parameters | map(string) | {} | no |
+| bootstrap_script | Path to bootstrap script. | string | n/a  | yes |
+| configuration_script | Private IP address configuration | string  | n/a | yes |
+| disk_caching | Data disk caching | string | n/a | yes |
+| disk_encryption_set_name | Disk Encryption Set name | string | n/a | yes |
+| disk_encryption_set_rg_name | Disk Encryption Set resource group name | string | n/a | yes |
+| disk_option | Data disk option | string | n/a | yes |
+| disk_size_gb | Data disk size gb | number | n/a | yes |
+| disk_type | Storage account type | string | n/a | yes |
+| extension_name | Scale Set Resources extension name | string | n/a | yes |
+| extension_publisher | Scale Set Resources extension publisher | string | n/a | yes |
+| Frontend_configuration_name | Load balancer frontend configuration name | string | n/a | yes |
+| Instances | Number of instances initialy deployed within scale set | Number | n/a | yes |
+| Ip_config_name | Ip configuration name | string | n/a | yes |
+| load_balancer_backend_port | Linux VM port to be connected via load balancer | Number | n/a | yes |
+| load_balancer_frontend_port | Port to be forwarded through the load balancer to the VMs | Number | n/a | yes |
+| load_balancer_name | Azure load balancer name | string | n/a | yes |
+| load_balancer_protocol | Load balancer protocol | string | n/a | yes |
+| load_balancer_rule_name | Load balance address pool rule name | string | n/a | yes |
+| load_balancer_sku | The SKU of the Azure load Balancer. Accepted values are Basic and Standard. | string | n/a | yes |
+| Location | Location to create the Azure resources in - should be the region name of your subscription, e.g 'northeurope' | string | n/a | yes |
+| network_interface_name | Network Interface name | string | n/a | yes |
+| os_upgrade_mode | Specifies how Upgrades (e.g. changing the Image/SKU) should be performed to Virtual Machine Instances. Possible values are Automatic, Manual and Rolling. Defaults to Automatic | string | n/a | yes |
+| resource_group_name | Name of the resource group to create and place your resources in | string | n/a | yes |
+| tags | Optional map of strings to be used as Azure Tags for all resources. | map(string) | string | n/a | yes |
+| xyz_subnet_name | Subnet name, found in the pre-existing virtual network in your subscription.| string | n/a | yes |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+|              |              |           |           |            |
+
+
 
 
