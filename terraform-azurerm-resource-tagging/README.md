@@ -28,3 +28,21 @@
 5. Override the madatory tag keys: This applies to both Subscription and Resource Group. The module Defaults to filtering the tags based on the mandatory tag keys (``bilingReference``,``cmdbReference``, ``openvironment``, ``hostingRestrictions``). However if you only want to return a subset of these mandatory tags then you can override the mandatory keys to fetch with a subset by providing a value for ``mandatory_tag_keys``. E.g if ``mandatory_tag_keys`` was provided when invoking the module with just one tag key, then only that one tag key will be returned.
 6. Fetch from another Subscription: You can also provide a ``subscription_id`` variable value and if the invoking account/Service Principal has access to the other Subscription then the tags from that will be fetched. if  the ``subscription_id`` is not provided then it defaults to fetching from the current Subscription.
 7. Combined use-cases: All of the above can be combined since every input variable to the module is optional so there are multiple use cases.
+
+<font size=”2”> The definition of this logic is in the main.tf file. </font>
+
+# Examples
+
+<font size=”2”> The following is a snippet as an example on how to invoke the module. </font>
+
+````
+# Invoke the resource tagging module:
+module "tagging" {
+  source = "../terraform/terraform-azurerm-resource-tagging"
+  version = "1.0.5"
+  resource_group_name = var.tenant_resource_group_name
+  only_mandatory_tags = true
+
+  additional_tags = { billingRefernce = var.billingReference, cmdbReference = var.cmdbReference }
+}
+````
