@@ -35,8 +35,10 @@
 
 <font size=”2”> The following is a snippet as an example on how to invoke the module. </font>
 
-````
+````terraform
+
 # Invoke the resource tagging module:
+
 module "tagging" {
   source = "../terraform/terraform-azurerm-resource-tagging"
   version = "1.0.5"
