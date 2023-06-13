@@ -147,7 +147,15 @@ module "linux_virtual_machine_scale_set" {
 | vm_password_key_vault_resource_group | Name of resource group where the VM Password Key vault is created | string | n/a | yes |
 | vm_scale_set_name | Name of Virtual Machine Scale Set | string | n/a | yes |
 
+<font size=”2”> For the ``tags`` variable it is advised to use the Resource tagging module to fetch the tags and provide them as an input </font>
 
+# VMSS Password
+
+<font size=”2”> The localadmin password of the provisioned Azure virtual machine scale set is automatcially generated and stored in an Azure key vault. This module requires that the user provides values for both vm_password_key_vault_name and vm_password_key_vault_resource_group variables. To retrieve this localadmin password, they will need to access the key vault secret via the Azure portal. </font>
+
+# VMSS Password Prerequisite
+
+<font size=”2”> Users need to ensure that they have granted the deployment SPN access on their chosen Azure key vault before applying the configuration. </font>
 
 
 
