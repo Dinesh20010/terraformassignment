@@ -65,7 +65,26 @@ module "tagging" {
 | Name         | Description  | Type      | Default   | Required   |
 |--------------|--------------|-----------|-----------|------------|
 | additional_tags | (OPTIONAL) Map of additional tags to be appended to the tags fetched from the Azure Subscription or Resource Group. Any existing tags with matching keys will be overridden with the additional_tags provided | ``map(string)`` | ``{}`` | no  |
-| Madatory_tag_keys | (OPTIONAL) List of tag keys to filter - defaults to the mandatory tag keys (``bilingReference``,``cmdbReference``, ``openvironment``, ``hostingRestrictions``), but can be overrided with other vaules and subset of values. | ``list(string)`` | [``bilingReference``,``cmdbReference``, ``openvironment``, ``hostingRestrictions``] | no |
-| backend_address_pool_name | Load balance address pool name | string | n/a  | yes |
-| bootstrap_param  | Bootstrap script parameters | map(string) | {} | no |
-| bootstrap_script | Path to bootstrap script. | string | n/a  | yes |
+| Mandatory_tag_keys | (OPTIONAL) List of tag keys to filter - defaults to the mandatory tag keys (``bilingReference``,``cmdbReference``, ``openvironment``, ``hostingRestrictions``), but can be overrided with other vaules and subset of values. | ``list(string)`` | [``bilingReference``,``cmdbReference``, ``openvironment``, ``hostingRestrictions``] | no |
+| only_mandatory_tags| (OPTIONAL) If true then return the mandatory XYZ tags, if false then return all tags. Defaults to true | bool | true  | no |
+| resource_group_name | (OPTIONAL) Name of an existing Azure Resource Group from which to fetch the tags | ``string`` | ``""`` | no |
+| subscription_id | (OPTIONAL) ID of an Azure subscription from which to fetch the tags. if not provided, then uses current Azure subscription | ``string`` | ``""`` | no |
+
+# Outputs
+
+## The following table explains the full list of output variables required by this module.
+
+## The definition of these variables is in the ``outputs.tf`` file.
+
+| Name | Description |
+|-----------------|-----------------|
+| Resource_group_tags | A populated or empty map of strings, containing key-value pairs for the tags fetched from the Resource Group with all rules applied. |
+| Subscription_tags | A populated or empty map of strings, containing key-value pairs for the tags fetched from the Subscription with all rules applied. |
+
+<font size=”2”> Both of the outputs will always be provided, empty outputs will be empty map(string)objects, not null values. </font>
+
+<font size=”2”> Using the above output as a reference, the following examples show how to use the granular output references: </font>
+
+- ``module.tagging.subscription_tags`` - this is how to reference the ``map(string)`` object for the subscription tags: ``module "tagging" {....}``
+- ``module.tagging.resource_group_tags`` - this is how to reference the ``map(string)`` object for the Resource Group tags: ``module "tagging" {....}``
+
