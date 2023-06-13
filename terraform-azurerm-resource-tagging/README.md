@@ -48,3 +48,10 @@ module "tagging" {
   additional_tags = { billingRefernce = var.billingReference, cmdbReference = var.cmdbReference }
 }
 ````
+
+# Resources
+
+| Name | Type |
+|-----------------|-----------------|
+| azurerm_resource_group.resource_group   | data source   |
+| azurerm_subscription.subscription   | data source  |
