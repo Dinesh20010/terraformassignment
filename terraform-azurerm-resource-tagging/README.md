@@ -55,3 +55,17 @@ module "tagging" {
 |-----------------|-----------------|
 | azurerm_resource_group.resource_group   | data source   |
 | azurerm_subscription.subscription   | data source  |
+
+# Inputs
+
+## The following table explains the full list of input variables required by this module.
+
+## The definition of these variables is in the ``variables.tf`` file
+
+| Name         | Description  | Type      | Default   | Required   |
+|--------------|--------------|-----------|-----------|------------|
+| additional_tags | (OPTIONAL) Map of additional tags to be appended to the tags fetched from the Azure Subscription or Resource Group. Any existing tags with matching keys will be overridden with the additional_tags provided | ``map(string)`` | ``{}`` | no  |
+| Madatory_tag_keys | (OPTIONAL) List of tag keys to filter - defaults to the mandatory tag keys (``bilingReference``,``cmdbReference``, ``openvironment``, ``hostingRestrictions``), but can be overrided with other vaules and subset of values. | ``list(string)`` | [``bilingReference``,``cmdbReference``, ``openvironment``, ``hostingRestrictions``] | no |
+| backend_address_pool_name | Load balance address pool name | string | n/a  | yes |
+| bootstrap_param  | Bootstrap script parameters | map(string) | {} | no |
+| bootstrap_script | Path to bootstrap script. | string | n/a  | yes |
