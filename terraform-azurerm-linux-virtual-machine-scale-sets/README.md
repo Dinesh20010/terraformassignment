@@ -138,18 +138,15 @@ module "linux_virtual_machine_scale_set" {
 | resource_group_name | Name of the resource group to create and place your resources in | string | n/a | yes |
 | tags | Optional map of strings to be used as Azure Tags for all resources. | map(string) | string | n/a | yes |
 | xyz_subnet_name | Subnet name, found in the pre-existing virtual network in your subscription.| string | n/a | yes |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
-|              |              |           |           |            |
+| xyz_vnet_name | XYZ virtual network name, found in your subscription | string | n/a | yes |
+| xyz_vnet_rg_name | Existing resource group found in your subscription | string | n/a | yes |
+| user_assigned_identities | Map of UAMI names and resource groups. | map(object({uami_name = string uami_rg_name = string})) | null | no |
+| Virtual_machine_size | The Virtual Machine SKU for the Scale Set, Default is Standard_DS3_v2 | string | n/a | yes |
+| vm_name_suffix | 2 digit or characters code used as appliction discretionary | string | ``"X2"``| no |
+| vm_password_key_vault_name | Name of Keyvault where Password are stored | string | n/a | yes |
+| vm_password_key_vault_resource_group | Name of resource group where the VM Password Key vault is created | string | n/a | yes |
+| vm_scale_set_name | Name of Virtual Machine Scale Set | string | n/a | yes |
+
 
 
 
