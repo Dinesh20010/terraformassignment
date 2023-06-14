@@ -74,7 +74,7 @@ module "tagging" {
 
 ## The following table explains the full list of output variables required by this module.
 
-## The definition of these variables is in the ``outputs.tf`` file.
+  The definition of these variables is in the ``outputs.tf`` file.
 
 | Name | Description |
 |-----------------|-----------------|
