@@ -18,6 +18,6 @@
 
 # About
 
-<font size=”2”> The purpose of this module is to provide users of the modle a way to fetch tags from the current Azure Subscription or an existing Resource group from (in Azure subscription). The output of this module will be two Terraform ``map(string)`` data objects - one for the tags from the subscription and the other for the tags from the resource group. These outputs from terraform can be used as inputs into other Terraform modules and resources - as a result there is no need to write your own utility to fetch tags, combine tags, override tags or hardcode tags anywhere in any files or CI/CD tools - you can use this module as a utility. This module will do everything based on the different ways this module can be invoked.
-  
-  This module doesn't use any external scripts, it uses Terraform data lookups for ``azurerm_subscription`` and ``azurerm_resource_group`` to get the tags, and uses Terraform functions to manipulate the tags into a final output that a developer can use as inputs into other modules, simply by using native Terraform module composition.</font>
+<font size=”2”> The purpose of this Terraform module is to provide a consistent and standard approach to create an Azure Storage Account. Using this module will enforce the consumer to provide the mandatory properties of an Azure Storage account so that the Azure criteria is met.
+
+  The definition of the input variables, output attributes and the resource definition are located at the root of the repository.</font>
