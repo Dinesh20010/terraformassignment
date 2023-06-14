@@ -134,5 +134,21 @@ module "storage_account" {
 | vnet_rg_name | Pre-existing Resource Group cotaining the spoke VNET and Subnets, to use for Private Endpoint. | ``string`` | n/a | yes |
 | access_tier | Defines the access tier for BlobStorage, FileStorage and StorageV2 accounts. Valid options are Hot and Cool, | ``string`` | ``Hot`` | no |
 
+# Outputs
 
+  The following table explains the full list of output variables required by this module.
 
+  The definition of these variables is in the ``outputs.tf`` file.
+  
+  | Name | Description |
+|-----------------|-----------------|
+| storage_account | A Terraform object reference to the full ``azurerm_storage_account`` resource. |
+| storage_account_private_endpoints | A Terraform object with nested object reference to the full ``azurerm_private_endpoint`` resource for each of the Private Endpoint connections. |
+| storage_account_shares | A Terraform object reference to the full ``azurerm_storage_share`` resource. |
+| storage_account_queues | A Terraform object reference to the full ``azurerm_storage_queue`` resource. |
+| storage_account_dfs | A Terraform object reference to the full ``azurerm_storage_data_lake_gen2_filesystem`` resource. |
+| storage_account_tables | A Terraform object reference to the full ``azurerm_storage_table`` resource. |
+| storage_account_lcpolicies | A Terraform object reference to the full ``azurerm_storage_management_policy`` resource. |
+| storage_account_containers | A Terraform object reference to the full ``azurerm_storage_container`` resource. |
+
+<font size=”2”> Any outputs listed above as an ``object`` type have been implemented this way to avoid the Terraform module hiding/limiting the full list of attributes terraform is able to output. This helps to avoid changes to the module as-and-when Terraform adds, removes, changes and output attribute. </font>
