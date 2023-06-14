@@ -27,7 +27,8 @@ module "azure_virtual_network" {
   db_subnet_cidr      = "10.0.2.0/24"
 }
 ```
-Inputs
+# Inputs
+
 |Name	| Description |	Type |	Default |	Required |
 |resource_group_name |	Name of the resource group	| string	|	Yes |
 |location	|Azure region location	|string	|	Yes |
