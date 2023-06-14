@@ -110,19 +110,19 @@ module "storage_account" {
 | account_replication_type | Storage Account replication type, e.g. LRS, ZRS, GRS etc | ``string`` | n/a | yes |
 | account_tier | Defines the tier to use for this storage account. Valid options are Standard and Premium | ``string`` | ``"Standard"`` | no |
 | blob_properties | Optional Blob properties | ``any``  | ``null`` | no |
-| bootstrap_script | Path to bootstrap script. | string | n/a  | yes |
-| configuration_script | Private IP address configuration | string  | n/a | yes |
-| disk_caching | Data disk caching | string | n/a | yes |
-| disk_encryption_set_name | Disk Encryption Set name | string | n/a | yes |
-| disk_encryption_set_rg_name | Disk Encryption Set resource group name | string | n/a | yes |
-| disk_option | Data disk option | string | n/a | yes |
-| disk_size_gb | Data disk size gb | number | n/a | yes |
-| disk_type | Storage account type | string | n/a | yes |
-| extension_name | Scale Set Resources extension name | string | n/a | yes |
-| extension_publisher | Scale Set Resources extension publisher | string | n/a | yes |
-| Frontend_configuration_name | Load balancer frontend configuration name | string | n/a | yes |
-| Instances | Number of instances initialy deployed within scale set | Number | n/a | yes |
-| Ip_config_name | Ip configuration name | string | n/a | yes |
+| container_list | List of containers to create and their access levels | ``list(object({ name = string, access_type = string}))`` | ``[]``  | no |
+| dfs_list | List of storage queues | ``list(string)``  | ``[]`` | no |
+| enable_hns| True or False for enabling hierarchical namespace for ADLS Gen2 | ``bool`` | ``false`` | no |
+| enable_static_website | True or False for enabling static website. | ``bool`` | ``false`` | no |
+| encryption_key_name | Pre-existing customer Managed key to use for encrypting the storage account | ``string`` | n/a | yes |
+| error404_document | Error 404 page for static website (ex.error.html) | ``string`` | ``""`` | no |
+| file_share_list | List of Fileshare to create and their quota | ``list(object({ name = string, quota = number}))``  | ``[]`` | no |
+| Index_document | Indes page for static website (ex.indes.html) | ``string`` | ``""`` | no |
+| Key_vault_name | Pre-existing Azure key vault containing the Customer Managed Key. | ``string`` | ``n/a`` | yes |
+| Key_vault_resource_group | Pre-existing Resource group containing the Customer Managed Key. | ``string`` | ``n/a`` | yes |
+| large_file_share_enabled | True or False for enabling large file share | ``bool`` | ``null`` | no |
+| lifecycles | Cofingure Azure Storage firewalls and virtual networks | ``list(object({ prefix_match = set(string), tier_to_cool_after_days = number, tier_to_archive_after_days = optional(number), delete_after_days = number, snapshot_delete_after_days = number }))`` | ``[]`` | no |
+| location | Location to create the Azure resources | ``string`` | n/a | yes |
 | load_balancer_backend_port | Linux VM port to be connected via load balancer | Number | n/a | yes |
 | load_balancer_frontend_port | Port to be forwarded through the load balancer to the VMs | Number | n/a | yes |
 | load_balancer_name | Azure load balancer name | string | n/a | yes |
