@@ -123,12 +123,12 @@ module "storage_account" {
 | large_file_share_enabled | True or False for enabling large file share | ``bool`` | ``null`` | no |
 | lifecycles | Cofingure Azure Storage firewalls and virtual networks | ``list(object({ prefix_match = set(string), tier_to_cool_after_days = number, tier_to_archive_after_days = optional(number), delete_after_days = number, snapshot_delete_after_days = number }))`` | ``[]`` | no |
 | location | Location to create the Azure resources | ``string`` | n/a | yes |
-| load_balancer_backend_port | Linux VM port to be connected via load balancer | Number | n/a | yes |
-| load_balancer_frontend_port | Port to be forwarded through the load balancer to the VMs | Number | n/a | yes |
-| load_balancer_name | Azure load balancer name | string | n/a | yes |
-| load_balancer_protocol | Load balancer protocol | string | n/a | yes |
-| load_balancer_rule_name | Load balance address pool rule name | string | n/a | yes |
-| load_balancer_sku | The SKU of the Azure load Balancer. Accepted values are Basic and Standard. | string | n/a | yes |
+| private_endpoint_subresources | List of the required subresources for the private Endpoints e.g. blob, dfs, file, queue | ``list(string)`` | ["blob"] | no |
+| queue_list | List of storages queues | ``list(string)`` | ``[]`` | no |
+| resource_group_name | Name of the new Resource Group to create the storage account | ``string`` | n/a | yes |
+| storage_account_name | Storage Account name. Should start with 'xyzstor' prefix only if content of the storage is intended to be accessed via internet browser | ``string`` | n/a | yes |
+| subnet_name | Pre-existing subnet, to use for Private endpoint | ``string`` | n/a | yes |
+| table_list | list of storage tables | ``list(string)`` | n/a | yes |
 | Location | Location to create the Azure resources in - should be the region name of your subscription, e.g 'northeurope' | string | n/a | yes |
 | network_interface_name | Network Interface name | string | n/a | yes |
 | os_upgrade_mode | Specifies how Upgrades (e.g. changing the Image/SKU) should be performed to Virtual Machine Instances. Possible values are Automatic, Manual and Rolling. Defaults to Automatic | string | n/a | yes |
