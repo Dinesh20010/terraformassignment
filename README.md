@@ -44,8 +44,10 @@ module "azure_virtual_network" {
 |app_nsg_ports	| Ports to allow in the application-tier NSG |	list(number) |	[8080, 80, 443] |	No |
 |db_nsg_ports |	Ports to allow in the database-tier NSG |	list(number) |	[3306, 1433, 5432] |	No |
 
-Outputs
-|Name|	Description|
+# Outputs
+
+| Name | Description |
+|-----------------|-----------------|
 |vnet_id	|ID of the virtual network|
 |app_subnet_id |	ID of the application-tier subnet |
 |db_subnet_id	|ID of the database-tier subnet|
