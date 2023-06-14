@@ -21,3 +21,17 @@
 <font size=”2”> The purpose of this Terraform module is to provide a consistent and standard approach to create an Azure Storage Account. Using this module will enforce the consumer to provide the mandatory properties of an Azure Storage account so that the Azure criteria is met.
 
   The definition of the input variables, output attributes and the resource definition are located at the root of the repository.</font>
+  
+## References:
+- [azurerm_storage_account Terraform Documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) 
+
+# Prerequisites
+
+<font size=”2”> This module uses the below data sources as input: </font>
+
+| Name | Type |
+|-----------------|-----------------|
+| azurerm_client_config.current   | data source   |
+| azurerm_key_vault.encryption_vault   | data source |
+| azurerm_key_vault_key.storage_cmk   | data source |
+| azurerm_subnet.subnet   | data source  |
