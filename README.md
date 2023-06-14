@@ -29,7 +29,8 @@ module "azure_virtual_network" {
 ```
 # Inputs
 
-|Name	| Description |	Type |	Default |	Required |
+| Name         | Description  | Type      | Default   | Required   |
+|--------------|--------------|-----------|-----------|------------|
 |resource_group_name |	Name of the resource group	| string	|	Yes |
 |location	|Azure region location	|string	|	Yes |
 |vnet_name |	Name of the virtual network |	string | Yes|
@@ -40,8 +41,8 @@ module "azure_virtual_network" {
 |address_space |	Address space for the virtual network	|list(string)|		Yes|
 |app_subnet_cidr | CIDR block for the application-tier subnet	| string |	Yes|
 |db_subnet_cidr	| CIDR block for the database-tier subnet	| string|		Yes|
-|app_nsg_ports	| Ports to allow in the application-tier NSG |	list(number)	[8080, 80, 443] |	No |
-|db_nsg_ports |	Ports to allow in the database-tier NSG |	list(number)	[3306, 1433, 5432] |	No |
+|app_nsg_ports	| Ports to allow in the application-tier NSG |	list(number) |	[8080, 80, 443] |	No |
+|db_nsg_ports |	Ports to allow in the database-tier NSG |	list(number) |	[3306, 1433, 5432] |	No |
 
 Outputs
 |Name|	Description|
