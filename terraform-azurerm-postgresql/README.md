@@ -8,7 +8,7 @@ Please ensure you are using the below listed versions to rule out any provider r
 
 | Name      | Version |
 
-\|-----------|---------|
+|-----------|---------|
 
 | terraform | 1.3.0   |
 
@@ -37,41 +37,42 @@ References:
 
 There are a few examples on how to use this module. Here’s the general snippet but you can get into details in examples subdirectory. Those examples are described in details in this chapter. Be aware that you need to create resource group yourself, this module doesn’t create one.
 
-\# create postgresql server
+
+````terraform
+# create postgresql server
 module "postgres" {
-`  `source = "../terraform/terraform-azurerm-postgresql"
-`  `version = "1.0.2"
+source = "../terraform/terraform-azurerm-postgresql"
+version = "1.0.2"
 
-`  `xyz\_net\_resource\_group\_name = var.xyz\_net\_resource\_group\_name
-`  `xyz\_vnet\_name = var.xyz\_vnet\_name
-`  `db\_subnet\_name = var.db\_subnet\_name
-`  `location = var.location
-`  `resource\_group\_name = azurerm\_resource\_group.rg.name
-`  `environment\_name = var.environment\_name
+xyz\_net\_resource\_group\_name = var.xyz\_net\_resource\_group\_name
+xyz\_vnet\_name = var.xyz\_vnet\_name
+db\_subnet\_name = var.db\_subnet\_name
+location = var.location
+resource\_group\_name = azurerm\_resource\_group.rg.name
+environment\_name = var.environment\_name
 
-`  `tags = module.tagging.subscription\_tags
+tags = module.tagging.subscription\_tags
 
-`  `# server Parameters
-`  `create\_server = true
-`  `server\_name = var.server\_name
-`  `server\_version = var.server\_version
-`  `sku\_name = var.sku\_name
-`  `storage\_size = var.storage\_size
-`  `encryption\_enabled = var.encryption\_enabled
-`  `backup\_retention\_days = var.backup\_retention\_days
-`  `geo\_redundant\_backup\_enabled = var.geo\_redundant\_backup\_enabled
-`  `create\_mode = var.create\_mode
-`  `auto\_grow\_enabled = var.auto\_grow\_enabled
+# server Parameters
+create\_server = true
+server\_name = var.server\_name
+server\_version = var.server\_version
+sku\_name = var.sku\_name
+storage\_size = var.storage\_size
+encryption\_enabled = var.encryption\_enabled
+backup\_retention\_days = var.backup\_retention\_days
+geo\_redundant\_backup\_enabled = var.geo\_redundant\_backup\_enabled
+create\_mode = var.create\_mode
+auto\_grow\_enabled = var.auto\_grow\_enabled
 
-`  `# database parameters
-`  `databases\_config = var.databases\_config
-
-`  `# customer-managed key
-`  `key\_vault\_name = var.key\_vault\_name
-`  `key\_vault\_resource\_group = var.key\_vault\_resource\_group
-`  `encryption\_key\_name = var.encryption\_key\_name
-
+# database parameters
+databases\_config = var.databases\_config
+# customer-managed key
+key\_vault\_name = var.key\_vault\_name
+key\_vault\_resource\_group = var.key\_vault\_resource\_group
+encryption\_key\_name = var.encryption\_key\_name
 }
+````
 
 This results with a Postgres server with <server\_name>-<environment\_name> name and a database with <database\_name>-<environment\_name>.
 
@@ -110,15 +111,6 @@ examples/server\_plus\_replica shows a scenario of creating a server with a data
 |Azurerm\_key\_vault\_secret.key\_vault\_password|Resource|
 
 
-
-
-
-
-
-
-
-
-
 **Inputs**
 
 The following table explains the full list of input variables required by this module.
@@ -134,13 +126,13 @@ The definition of these variables is in the variables.tf file.
 |databases\_config|Map of objects with parameters for Postgres Database. If empty, no database will be created.|
 |<a name="sku_name"></a>[sku_name](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#sku_name)|The name of the SKU used by the server. By default: GP\_Gen5\_2.|
 |<a name="version"></a>[version](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#version)|Server version.|
-|`  `encryption\_enabled|<p>Enabling encryption on the server level is not recommended. It causes substantial performance degradation and is not supported by Microsoft. More Infor: <https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#infrastructure_encryption_enabled></p><p></p>|
+|encryption\_enabled|<p>Enabling encryption on the server level is not recommended. It causes substantial performance degradation and is not supported by Microsoft. More Infor: <https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#infrastructure_encryption_enabled></p><p></p>|
 |encryption\_key\_name|The Name of the Customer Managed Key which should be used to encrypt this postgres.|
 |Environment\_name|Logical environment name within your subscription.|
 |<a name="geo_redundant_backup_enabled"></a>[geo_redundant_backup_enabled](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#geo_redundant_backup_enabled)|This allows you to choose between locally redundant or geo-redundant backup storage in the General Purpose and Memory Optimized tiers. |
 |key\_vault\_name|Name of the azure Keyvault containing the Customer Managed key|
 |key\_vault\_resource\_group|Name of the resource group to create and place your resources in.|
-|`  `server\_name|Server name without an environment suffix, eg. Postgresql-srv01|
+|server\_name|Server name without an environment suffix, eg. Postgresql-srv01|
 |source\_server\_id|For creation modes other than Default, the source server ID to use.|
 |<a name="storage_mb"></a>[storage_mb](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/postgresql_server#storage_mb)|Storage size, in megabytes, of the Azure Database for PostgreSQL server.|
 |tags|Optional map of strings to be used as Azure Tags for all resources.|
