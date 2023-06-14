@@ -35,3 +35,113 @@
 | azurerm_key_vault.encryption_vault   | data source |
 | azurerm_key_vault_key.storage_cmk   | data source |
 | azurerm_subnet.subnet   | data source  |
+
+# Example
+## The following is a snippet as an example on basic use of the module:
+
+```terraform
+module "storage_account" {
+  source = "./terraform-azurerm-storage-account"
+  version = "2.1.4"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  storage_account_name = var.storage_account_name
+  location = var.location
+  tags = module.tagging.subscription_tags
+
+  account_replication_type = var.account_replication_type
+  account_kind = var.account_kind
+  account_tier = var.account_tier
+  access_tier = var.access_tier
+
+  enable_hns = var.enable_hns
+  large_file_share_enabled = var.large_file_share_enabled
+
+  key_vault_resource_group = var.key_vault_resource_group
+  key_vault_name = var.Key_vault_name
+  encryption_key_name = var.encryption_key_name
+
+  private_endpoint_subresources = var.private_endpoint_subresources
+  vnet_rg_name = var.vnet_rg_name
+  vnet_name = var.vnet_name
+  subnet_name = var.subnet_name
+
+  # Storage-subresources
+  container_list = var.container_list
+  file_share_list = var.file_share_list
+  table_list = var.table_list
+  queue_list = var.queue_list
+  dfs_list = var.dfs_list
+
+  # storage account lifecycle management
+  lifecycles = var.lifecycles
+
+  # Static website enabled
+  enable_static_website = var.enable_static_website
+}
+````
+
+# Resources
+
+| Name | Type |
+|-----------------|-----------------|
+| azurerm_key_vault_access_policy.storage_keyvault_accesspolicy   | resource   |
+| azurerm_private_endpoint.private_endpoint   | resource   |
+| azurerm_storage_account.storage_account   | resource |
+| azurerm_storage_container.storage_account_container | resource  |
+| azurerm_storage_data_lake_gen2_filesystem.storage_account_dfs   | resource   |
+| azurerm_storage_management_policy.storage_account_lcpolicy   | resource   |
+| azurerm_storage_queue.storage_account_queues | resource  |
+| azurerm_storage_share.storage_account_fileshare   | resource   |
+| azurerm_storage_table.storage_account_tables | resource   |
+| azurerm_user_assigned_identity.storage_account_uami  | resource  |
+| time_sleep.dns_update_checker  | resource  |
+| azurerm_subnet.xyz_subnet  | data source  |
+
+# Inputs
+
+## The following table explains the full list of input variables required by this module.
+
+## The definition of these variables is in the ``variables.tf`` file
+
+| Name         | Description  | Type      | Default   | Required   |
+|--------------|--------------|-----------|-----------|------------|
+| account_kind | Defines the kind of account. Valid options are BlobStorage, BlockBlobStorage, FileStorage, Storage and StorageV2. | ``string`` | ``"StorageV2"`` | no |
+| account_replication_type | Storage Account replication type, e.g. LRS, ZRS, GRS etc | ``string`` | n/a | yes |
+| account_tier | Defines the tier to use for this storage account. Valid options are Standard and Premium | ``string`` | ``"Standard"`` | no |
+| blob_properties | Optional Blob properties | ``any``  | ``null`` | no |
+| bootstrap_script | Path to bootstrap script. | string | n/a  | yes |
+| configuration_script | Private IP address configuration | string  | n/a | yes |
+| disk_caching | Data disk caching | string | n/a | yes |
+| disk_encryption_set_name | Disk Encryption Set name | string | n/a | yes |
+| disk_encryption_set_rg_name | Disk Encryption Set resource group name | string | n/a | yes |
+| disk_option | Data disk option | string | n/a | yes |
+| disk_size_gb | Data disk size gb | number | n/a | yes |
+| disk_type | Storage account type | string | n/a | yes |
+| extension_name | Scale Set Resources extension name | string | n/a | yes |
+| extension_publisher | Scale Set Resources extension publisher | string | n/a | yes |
+| Frontend_configuration_name | Load balancer frontend configuration name | string | n/a | yes |
+| Instances | Number of instances initialy deployed within scale set | Number | n/a | yes |
+| Ip_config_name | Ip configuration name | string | n/a | yes |
+| load_balancer_backend_port | Linux VM port to be connected via load balancer | Number | n/a | yes |
+| load_balancer_frontend_port | Port to be forwarded through the load balancer to the VMs | Number | n/a | yes |
+| load_balancer_name | Azure load balancer name | string | n/a | yes |
+| load_balancer_protocol | Load balancer protocol | string | n/a | yes |
+| load_balancer_rule_name | Load balance address pool rule name | string | n/a | yes |
+| load_balancer_sku | The SKU of the Azure load Balancer. Accepted values are Basic and Standard. | string | n/a | yes |
+| Location | Location to create the Azure resources in - should be the region name of your subscription, e.g 'northeurope' | string | n/a | yes |
+| network_interface_name | Network Interface name | string | n/a | yes |
+| os_upgrade_mode | Specifies how Upgrades (e.g. changing the Image/SKU) should be performed to Virtual Machine Instances. Possible values are Automatic, Manual and Rolling. Defaults to Automatic | string | n/a | yes |
+| resource_group_name | Name of the resource group to create and place your resources in | string | n/a | yes |
+| tags | Optional map of strings to be used as Azure Tags for all resources. | map(string) | string | n/a | yes |
+| xyz_subnet_name | Subnet name, found in the pre-existing virtual network in your subscription.| string | n/a | yes |
+| xyz_vnet_name | XYZ virtual network name, found in your subscription | string | n/a | yes |
+| xyz_vnet_rg_name | Existing resource group found in your subscription | string | n/a | yes |
+| user_assigned_identities | Map of UAMI names and resource groups. | map(object({uami_name = string uami_rg_name = string})) | null | no |
+| Virtual_machine_size | The Virtual Machine SKU for the Scale Set, Default is Standard_DS3_v2 | string | n/a | yes |
+| vm_name_suffix | 2 digit or characters code used as appliction discretionary | string | ``"X2"``| no |
+| vm_password_key_vault_name | Name of Keyvault where Password are stored | string | n/a | yes |
+| vm_password_key_vault_resource_group | Name of resource group where the VM Password Key vault is created | string | n/a | yes |
+| vm_scale_set_name | Name of Virtual Machine Scale Set | string | n/a | yes |
+
+
