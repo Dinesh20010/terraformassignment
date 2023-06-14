@@ -128,20 +128,11 @@ module "storage_account" {
 | resource_group_name | Name of the new Resource Group to create the storage account | ``string`` | n/a | yes |
 | storage_account_name | Storage Account name. Should start with 'xyzstor' prefix only if content of the storage is intended to be accessed via internet browser | ``string`` | n/a | yes |
 | subnet_name | Pre-existing subnet, to use for Private endpoint | ``string`` | n/a | yes |
-| table_list | list of storage tables | ``list(string)`` | n/a | yes |
-| Location | Location to create the Azure resources in - should be the region name of your subscription, e.g 'northeurope' | string | n/a | yes |
-| network_interface_name | Network Interface name | string | n/a | yes |
-| os_upgrade_mode | Specifies how Upgrades (e.g. changing the Image/SKU) should be performed to Virtual Machine Instances. Possible values are Automatic, Manual and Rolling. Defaults to Automatic | string | n/a | yes |
-| resource_group_name | Name of the resource group to create and place your resources in | string | n/a | yes |
-| tags | Optional map of strings to be used as Azure Tags for all resources. | map(string) | string | n/a | yes |
-| xyz_subnet_name | Subnet name, found in the pre-existing virtual network in your subscription.| string | n/a | yes |
-| xyz_vnet_name | XYZ virtual network name, found in your subscription | string | n/a | yes |
-| xyz_vnet_rg_name | Existing resource group found in your subscription | string | n/a | yes |
-| user_assigned_identities | Map of UAMI names and resource groups. | map(object({uami_name = string uami_rg_name = string})) | null | no |
-| Virtual_machine_size | The Virtual Machine SKU for the Scale Set, Default is Standard_DS3_v2 | string | n/a | yes |
-| vm_name_suffix | 2 digit or characters code used as appliction discretionary | string | ``"X2"``| no |
-| vm_password_key_vault_name | Name of Keyvault where Password are stored | string | n/a | yes |
-| vm_password_key_vault_resource_group | Name of resource group where the VM Password Key vault is created | string | n/a | yes |
-| vm_scale_set_name | Name of Virtual Machine Scale Set | string | n/a | yes |
+| table_list | list of storage tables | ``list(string)`` | ``[]`` | no |
+| tags | Optional map of strings to be used as Azure Tags for all resources. | ``map(string)`` | ``{}`` | no |
+| vnet_name | Pre-existing spoke VNET containing Subnets, to use for Private Endpoint. | ``string`` | n/a | yes |
+| vnet_rg_name | Pre-existing Resource Group cotaining the spoke VNET and Subnets, to use for Private Endpoint. | ``string`` | n/a | yes |
+| access_tier | Defines the access tier for BlobStorage, FileStorage and StorageV2 accounts. Valid options are Hot and Cool, | ``string`` | ``Hot`` | no |
+
 
 
